@@ -1,0 +1,9 @@
+.mapContainer {
+  height: 100vh;
+  width: 100%;
+}
+
+.tracker-icon {
+  border-radius: 50%;
+  border: 3px solid #4ecca3 !important;
+}

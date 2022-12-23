@@ -1,0 +1,43 @@
+name: Deploy Solana Breakpoint Web App
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update Packages
+        run: |
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+      - name: Setup AWS Credentials
+        run: |
+          mkdir ~/.aws
+          touch ~/.aws/credentials
+          echo "[default]" >> ~/.aws/credentials
+          echo "aws_access_key_id = ${{ secrets.AWS_ACCESS_KEY }}" >> ~/.aws/credentials
+          echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_KEY }}" >> ~/.aws/credentials
+      - name: Install AWS CLI
+        run: |
+          sudo pip3 install awscli
+      - name: Install dependencies
+        run: |
+          yarn
+      - name: Build
+        run: |
+          CI=false yarn build
+      - name: Copy built site to S3
+        run: |
+          aws s3 cp --recursive build s3://solana-breakpoint-webapp/
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: "E38BSWCL0OXWFH"
+          PATHS: "/*"
+          AWS_REGION: "us-east-1"
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
