@@ -1,4 +1,4 @@
-name: Deploy Solana Breakpoint Web App
+name: Deploy Public Sharing Web App
 
 on:
   push:
@@ -32,11 +32,11 @@ jobs:
           CI=false yarn build
       - name: Copy built site to S3
         run: |
-          aws s3 cp --recursive build s3://solana-breakpoint-webapp/
+          aws s3 cp --recursive build s3://public.trackpac.io/
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         env:
-          DISTRIBUTION: "E38BSWCL0OXWFH"
+          DISTRIBUTION: "EVVRHIFW5FCJC"
           PATHS: "/*"
           AWS_REGION: "us-east-1"
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
