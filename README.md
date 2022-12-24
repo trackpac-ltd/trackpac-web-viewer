@@ -6,7 +6,7 @@ Allows you to view any account or device that is marked as public on Trackpacs s
 
 ## Quick Start
 
-Edit `config.js` to replace logo, logo alt, site title and site url
+Edit `/src/config.js` to replace logo, logo alt, site title and site url
 
 Any uploaded logo files need to sit in the `public/` folder.
 
