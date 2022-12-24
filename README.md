@@ -2,12 +2,19 @@
 
 Quickly get going with showing public accounts or devices with Trackpac.
 
-Allows you to view any account or device that is marked as public on Trackpacs systems
+Allows you to view any account or device that is marked as public on Trackpacs system.
 
 ## Quick Start
 
-Edit config.js to replace logo, logo alt, site title and site url
+Edit `config.js` to replace logo, logo alt, site title and site url
 
-any uploaded logo files need to sit in public/
+Any uploaded logo files need to sit in the `public/` folder.
 
-thats it! edit to your hearts content :)
+Thats it! edit to your hearts content :)
+
+### How to run
+
+First run `yarn` to grab all the packages then `yarn start` to run locally.
+
+`yarn test` will run some basic tests with jest, worth extending.
+
