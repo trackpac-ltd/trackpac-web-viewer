@@ -51,9 +51,13 @@ export default function MapPanel(props) {
         {
           //loop through the trackers and create a marker for each one
         }
-        {props.trackers.map((tracker) => (
-          <BasicMarker tracker={tracker} />
-        ))}
+        {props.trackers.map((tracker) => {
+          //if the tracker has no location, don't show it
+          if (!tracker?.last_location?.latitude) {
+            return null;
+          }
+          return <BasicMarker tracker={tracker} />;
+        })}
         {
           //add an overlay logo
         }
