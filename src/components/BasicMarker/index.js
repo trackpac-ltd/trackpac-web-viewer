@@ -1,6 +1,7 @@
 import moment from "moment";
 import { Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+import { Button } from "@mui/material";
 
 export default function BasicMarker(props) {
   //get the tracker object from the props
@@ -43,6 +44,9 @@ export default function BasicMarker(props) {
           <h5>{tracker.name} </h5>
           <strong>Last Updated: </strong>
           {formatDate(tracker.last_updated)}
+          <br />
+          <strong>Location: </strong>
+          {tracker.last_location.geocode}
         </Popup>
       </Marker>
     </div>
